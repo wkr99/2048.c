@@ -19,23 +19,21 @@ int squares[GH][GW] = { [0 ... GH-1] = { [0 ... GW-1] = 1 } };
 */
 
 
-void list_all() {  // print all squares x, y, val
+void list_all(bool as_grid) {  // print all squares x, y, val; grid or list format
     for (int i = 0; i < GH; i++) {
         for (int j = 0; j < GW; j++) {
-            printf("x=%d y=%d == %d\n", i, j, squares[i][j]);
+            printf("y%dx%d: [%d] ", i, j, squares[i][j]);
+            if (!as_grid) { printf("\n"); }
         }
+        if (as_grid) { printf("\n"); }
     }
     printf("\n");
 }
 
 
-void pretty_print() {
-
-}
-
 
 void squash(bool col_mode, int coord) { 
-
+    
 }
 
 
@@ -43,9 +41,7 @@ void squash(bool col_mode, int coord) {
 int main() {
     printf("twenty fourty eight.\n");
 
-    printf("┌──────┌─\n");
-
-    //list_all();
+    list_all(/*as_grid = */true);
 
     return 0;
 }
