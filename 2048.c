@@ -38,6 +38,12 @@ void squash(bool col_mode, int coord) {
 
 
 
+
+
+
+
+
+
 int main() {
     printf("twenty fourty eight.\n");
 
@@ -45,4 +51,15 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
