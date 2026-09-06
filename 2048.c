@@ -7,16 +7,37 @@
 #define GH 5 // GRID_HEIGHT
 
 
+/*
+    --- Needs ---
+    
+    !!fns:
+
+    -- Move L, R, U, D
+      - slide all arr elements to $(dir)
+      - check for any matching neighor blocks
+      - merge matching neighbors (val *= 2, rm one neighbor)
+      - re-slide elements to $(dir)
+      - repeat til no more matching neighbors
+      // easy for L, R; trickier for U, D
+
+    -- Add block
+      - adds new block into an empty square
+      - val of ew block varies based on game progression
+      // outside of fn scope but can add 1 or more than 1 block
+
+
+    !! win condition: when one or more blocks has val >= 2048
+    !! lose condition: when all squares are populated && no mergable neighbors 
+*/
+
+
 int squares[GH][GW] = { [0 ... GH-1] = { [0 ... GW-1] = 1 } };
 /*  one line initing magic ig.
     init 2d array of h=GH w=GW, filled w 1s for sanity check.
     
     using "designated initializers" for one line array init 
     
-    GCC extension: "such and such indeces = val"
-
-
-*/
+    GCC extension: "such and such indeces = val"  */
 
 
 void list_all(bool as_grid) {  // print all squares x, y, val; grid or list format
