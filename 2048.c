@@ -30,6 +30,21 @@
     !! lose condition: when all squares are populated && no mergable neighbors 
 */
 
+// algo to move all items in an array leftward and combine like neighbors
+// bool is_not_shifted = true;
+// while(is_not_shifted) {
+// 	is_not_shifted = false;
+// 	for(int i=0; i<arrlen; i++) {
+//		if(arr[i] == 0) {
+//			printf("nice\n");
+//		}
+//
+// 	}
+//
+// }
+
+
+
 
 int squares[GH][GW] = { [0 ... GH-1] = { [0 ... GW-1] = 1 } };
 /*  one line initing magic ig.
