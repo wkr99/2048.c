@@ -43,29 +43,36 @@
 //
 // }
 // 
-// HAHAAA iterate backwards over array rather than wrack your brain 5head
+//  HAHAAA iterate backwards over array rather than wrack your brain 5head
+// 
 //
-// bool is_not_shifted = true:
+//  void shift_left(): 
 // 
-// void shift_left(): 
-// 
-// while (is_not_shifted) {
-// 	for (int i=0; i<arrlen; i++) {
-// 		if arr[i] == 0  {
-// 			if arr.next > 0 {
-// 				arr[i] = arr.next;
-// 				arr.next = 0;
-// 			} else { 
-// 				continue; 
-// 			}
-// 		} else { //arr[i] > 0
-// 			if arr.next == arr[i] {
-//				arr[i] += arr.next;
-//				arr.next = 0;
-// 			} else {
-// 				continue;
-// 			}
-// 		}
+//  bool has_shifted = true;
+//
+//  while (has_shifted) {
+//      bool has_shifted = false
+//
+//      for (int i=0; i<arrlen-1; i++) {  //no need to check last num
+// 		    if arr[i] == 0  {
+// 			    if arr.next > 0 {
+// 				    arr[i] = arr.next;
+// 				    arr.next = 0;
+//                  has_shifted = true;
+// 			    } else { 
+// 				    continue; 
+// 			    }
+// 		    } else { //arr[i] > 0
+// 			    if arr.next == arr[i] {  // if like neighbors
+//				    arr[i] += arr.next;
+//				    arr.next = 0;
+//                  has_shifted = true;
+// 			    } else {
+// 				    continue;
+// 			    }
+// 		    }
+//      }
+//  }
 //
 
 
