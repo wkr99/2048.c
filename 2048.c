@@ -110,13 +110,13 @@ void print_arr(int * arr, int arr_len) {
 
 
 void shift_left(int * arr) {
+    // take an int arr, shift (swap w zero) non-zero vals to the
+    // left until no more shifts can be made
     bool has_shifted = true;
     
     while (has_shifted) {
         has_shifted = false;
 
-        // iter over arr, combines like members,
-        // moves non-zero members if neighbor is zero
         for (int i=0; i < GW - 1; i++) {
             if (arr[i] == 0) {
                 if (arr[i + 1] > 0) {
@@ -137,8 +137,32 @@ void shift_left(int * arr) {
 
 
 
+void shift_right(int * arr) {
+    // take an int arr, shift (swap w zero) non-zero vals to the
+    // right until no more shifts can be made
+    bool has_shifted = true;
+
+    while (has_shifted) {
+        has_shifted = false;
 
 
+        for (int i = GW - 1; i > 0; i--) {
+            if (arr[i] == 0) {
+                if (arr[i - 1] > 0) {
+                    arr[i] = arr[i - 1];
+                    arr[i - 1] = 0;
+                    has_shifted = true;
+                }
+            } else {
+                if (arr[i - 1] == arr[i]) {
+                    arr[i] += arr[i - 1];
+                    arr[i - 1] = 0;
+                    has_shifted = true;
+                }
+            }
+        }
+    }
+}
 
 
 
@@ -152,6 +176,10 @@ int main() {
     print_arr(squares[0], GW);
 
     shift_left(squares[0]);
+
+    print_arr(squares[0], GW);
+
+    shift_right(squares[0]);
 
     print_arr(squares[0], GW);
 
