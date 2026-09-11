@@ -78,7 +78,7 @@
 
 
 
-int squares[GH][GW] = { [0 ... GH-1] = { [0 ... GW-1] = 1 } };
+int squares[GH][GW] = { [0 ... GH-1] = { [0 ... GW-1] = 0 } };
 /*  one line initing magic ig.
     init 2d array of h=GH w=GW, filled w 1s for sanity check.
     
@@ -99,11 +99,41 @@ void list_all(bool as_grid) {  // print all squares x, y, val; grid or list form
 }
 
 
-
-void squash(bool col_mode, int coord) { 
-    
+//flat prints an arr for debug
+void print_arr(int * arr, int arr_len) {
+    for (int i=0; i < arr_len; i++) {
+        printf("[ %d ]", arr[i]);
+    }
+    printf("\n");
 }
 
+
+
+void shift_left(int * arr) {
+    bool has_shifted = true;
+    
+    while (has_shifted) {
+        has_shifted = false;
+
+        // iter over arr, combines like members,
+        // moves non-zero members if neighbor is zero
+        for (int i=0; i < GW - 1; i++) {
+            if (arr[i] == 0) {
+                if (arr[i + 1] > 0) {
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = 0;
+                    has_shifted = true;
+                }
+            } else {  // arr[i] > 0
+                if (arr[i + 1] == arr[i]) {  // if like neighbors
+                    arr[i] += arr[i + 1];
+                    arr[i + 1] = 0;
+                    has_shifted = true;
+                }
+            }
+        }
+    }
+}
 
 
 
@@ -114,8 +144,16 @@ void squash(bool col_mode, int coord) {
 
 int main() {
     printf("twenty fourty eight.\n");
+    
+    squares[0][2] = 2;
 
     list_all(/*as_grid = */true);
+
+    print_arr(squares[0], GW);
+
+    shift_left(squares[0]);
+
+    print_arr(squares[0], GW);
 
     return 0;
 }
