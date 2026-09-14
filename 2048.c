@@ -10,15 +10,6 @@
 /*
     --- Needs ---
     
-    !!fns:
-
-    -- Move L, R, U, D
-      - slide all arr elements to $(dir)
-      - check for any matching neighor blocks
-      - merge matching neighbors (val *= 2, rm one neighbor)
-      - re-slide elements to $(dir)
-      - repeat til no more matching neighbors
-      // easy for L, R; trickier for U, D
 
     -- Add block
       - adds new block into an empty square
@@ -28,53 +19,8 @@
 
     !! win condition: when one or more blocks has val >= 2048
     !! lose condition: when all squares are populated && no mergable neighbors 
+
 */
-
-// algo to move all items in an array leftward and combine like neighbors
-// bool is_not_shifted = true;
-// while(is_not_shifted) {
-// 	is_not_shifted = false;
-// 	for(int i=0; i<arrlen; i++) {
-//		if(arr[i] == 0) {
-//			printf("nice\n");
-//		}
-//
-// 	}
-//
-// }
-// 
-//  HAHAAA iterate backwards over array rather than wrack your brain 5head
-// 
-//
-//  void shift_left(): 
-// 
-//  bool has_shifted = true;
-//
-//  while (has_shifted) {
-//      bool has_shifted = false
-//
-//      for (int i=0; i<arrlen-1; i++) {  //no need to check last num
-// 		    if arr[i] == 0  {
-// 			    if arr.next > 0 {
-// 				    arr[i] = arr.next;
-// 				    arr.next = 0;
-//                  has_shifted = true;
-// 			    } else { 
-// 				    continue; 
-// 			    }
-// 		    } else { //arr[i] > 0
-// 			    if arr.next == arr[i] {  // if like neighbors
-//				    arr[i] += arr.next;
-//				    arr.next = 0;
-//                  has_shifted = true;
-// 			    } else {
-// 				    continue;
-// 			    }
-// 		    }
-//      }
-//  }
-//
-
 
 
 
@@ -163,6 +109,21 @@ void shift_right(int * arr) {
         }
     }
 }
+
+
+
+void shift_up(int * arr, int column) {
+    printf("Shift Up\n");
+}
+
+
+
+void shift_down(int * arr, int row) {
+    printf("Shift Down\n");
+}
+
+
+
 
 
 
