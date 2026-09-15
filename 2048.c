@@ -154,6 +154,31 @@ void shift_up(int col) {
 
 void shift_down(int col) {
     printf("Shift Down\n");
+    // similiar to shift_left/right, works cross-array at same i
+    
+    //flagged true to start while loop
+    bool has_shifted = true;
+
+    while (has_shifted) {
+        has_shifted = false;
+
+        for (int i = GH - 1; i > 0; i--) {
+            if (squares[i][col] == 0) {
+                if (squares[i-1][col] > 0) {
+                    squares[i][col] = squares[i-1][col];
+                    squares[i-1][col] = 0;
+                    has_shifted = true;
+                }
+            } else {
+                if (squares[i-1][col] == squares[i][col]) {
+                    squares[i][col] += squares[i-1][col];
+                    squares[i-1][col] = 0;
+                    has_shifted = true;
+                }
+            }
+        }
+
+    }
 }
 
 
@@ -176,7 +201,10 @@ int main() {
     shift_right(/*row*/ 0);
     list_all(/*as_grid = */true);
 
-    shift_up( /*col*/ 0);
+    shift_down( /*col*/ 4);
+    list_all(true);
+
+    shift_up( /*col*/ 4);
     list_all(true);
 
 
