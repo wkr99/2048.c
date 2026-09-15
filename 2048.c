@@ -55,37 +55,44 @@ void print_arr(int * arr, int arr_len) {
 
 
 
-void shift_left(int * arr) {
+void shift_left(int row) {
+    printf("Shift Left\n");
     // take an int arr, shift (swap w zero) non-zero vals to the
     // left until no more shifts can be made
+
+    //flagged true to start while loop
     bool has_shifted = true;
     
     while (has_shifted) {
         has_shifted = false;
 
         for (int i=0; i < GW - 1; i++) {
-            if (arr[i] == 0) {
-                if (arr[i + 1] > 0) {
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = 0;
+            if (squares[row][i] == 0) {
+                if (squares[row][i + 1] > 0) {
+                    squares[row][i] = squares[row][i + 1];
+                    squares[row][i + 1] = 0;
                     has_shifted = true;
                 }
             } else {  // arr[i] > 0
-                if (arr[i + 1] == arr[i]) {  // if like neighbors
-                    arr[i] += arr[i + 1];
-                    arr[i + 1] = 0;
+                if (squares[row][i + 1] == squares[row][i]) {  // if like neighbors
+                    squares[row][i] += squares[row][i + 1];
+                    squares[row][i + 1] = 0;
                     has_shifted = true;
                 }
             }
         }
+
     }
 }
 
 
 
-void shift_right(int * arr) {
+void shift_right(int row) {
+    printf("Shift Right\n");
     // take an int arr, shift (swap w zero) non-zero vals to the
     // right until no more shifts can be made
+
+    //flagged true to start while loop
     bool has_shifted = true;
 
     while (has_shifted) {
@@ -93,32 +100,59 @@ void shift_right(int * arr) {
 
 
         for (int i = GW - 1; i > 0; i--) {
-            if (arr[i] == 0) {
-                if (arr[i - 1] > 0) {
-                    arr[i] = arr[i - 1];
-                    arr[i - 1] = 0;
+            if (squares[row][i] == 0) {
+                if (squares[row][i - 1] > 0) {
+                    squares[row][i] = squares[row][i - 1];
+                    squares[row][i - 1] = 0;
                     has_shifted = true;
                 }
             } else {
-                if (arr[i - 1] == arr[i]) {
-                    arr[i] += arr[i - 1];
-                    arr[i - 1] = 0;
+                if (squares[row][i - 1] == squares[row][i]) {
+                    squares[row][i] += squares[row][i - 1];
+                    squares[row][i - 1] = 0;
                     has_shifted = true;
                 }
             }
         }
+
     }
 }
 
 
 
-void shift_up(int * arr, int column) {
+void shift_up(int col) {
     printf("Shift Up\n");
+    // similar to shift_left/right, but has to work across multiple arrays
+
+    //flagged true to start while loop
+    bool has_shifted = true;
+
+    while (has_shifted) {
+        has_shifted = false;
+
+        for (int i = 0; i < GH - 1; i++) {
+            if (squares[i][col] == 0) {
+                if (squares[i+1][col] > 0) {
+                    squares[i][col] = squares[i+1][col];
+                    squares[i+1][col] = 0;
+                    has_shifted = true;
+                }
+            } else {
+                if (squares[i+1][col] == squares[i][col]) {
+                    squares[i][col] += squares[i+1][col];
+                    squares[i+1][col] = 0;
+                    has_shifted = true;
+                }
+            }
+            
+        }
+
+    }
 }
 
 
 
-void shift_down(int * arr, int row) {
+void shift_down(int col) {
     printf("Shift Down\n");
 }
 
@@ -134,15 +168,17 @@ int main() {
 
     list_all(/*as_grid = */true);
 
-    print_arr(squares[0], GW);
 
-    shift_left(squares[0]);
+    shift_left(/*row*/ 0);
+    list_all(/*as_grid = */true);
 
-    print_arr(squares[0], GW);
 
-    shift_right(squares[0]);
+    shift_right(/*row*/ 0);
+    list_all(/*as_grid = */true);
 
-    print_arr(squares[0], GW);
+    shift_up( /*col*/ 0);
+    list_all(true);
+
 
     return 0;
 }
